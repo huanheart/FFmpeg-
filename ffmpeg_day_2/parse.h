@@ -23,7 +23,9 @@ class Parse : public QThread //这个线程是用来进行读取视频和解码�
     Q_OBJECT
 public:
     explicit Parse(QObject *parent = nullptr);
-    bool decide=true;
+    bool decide=true; //这个是用来在析构Mythread之前结束掉当前线程任务的，
+//防止出现QThread: Destroyed while thread is still running
+//虽然出现这个在这个的程序中也没什么大事
 
 private:
     AVFormatContext *pFormatCtx=NULL;
