@@ -83,7 +83,7 @@ void Parse::run()
         return ;
     }
 
-    while(av_read_frame(pFormatCtx,packet)>=0) //读取到packet中
+    while(av_read_frame(pFormatCtx,packet)>=0&&decide==true) //读取到packet中
     {
         if(packet->stream_index==videoStream)
         {
