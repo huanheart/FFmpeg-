@@ -15,7 +15,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 
-win32:{ #这里有个不懂的就是我是64位的，但是这里填的是win32才正确
+win32:{ #这里填的是win32才正确
 FFMPEG_HOME=D:\ffmpeg_new\ffmpeg-master-latest-win64-gpl-shared
 
 #设置 ffmpeg 的头文件
