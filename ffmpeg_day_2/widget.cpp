@@ -36,4 +36,10 @@ void Widget::paintEvent(QPaintEvent *event)
     painter.drawImage(QPoint(x,y),img);
     return ;
 }
+void Widget::closeEvent(QCloseEvent *event)
+{
+    Mythread->decide=false;
+    QThread::msleep(30); //这里
+    QWidget::closeEvent(event);
+}
 
