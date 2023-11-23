@@ -23,7 +23,7 @@ class Parse : public QThread //这个线程是用来进行读取视频和解码�
     Q_OBJECT
 public:
     explicit Parse(QObject *parent = nullptr);
-
+    bool decide=true;
 
 private:
     AVFormatContext *pFormatCtx=NULL;
