@@ -101,7 +101,9 @@ void Parse::run()
         }
     }
     av_freep(data);
-    av_free(pFrame_in);
+    //av_free(pFrame_in);
+    av_frame_free(&pFrame_in);
+    av_packet_free(&packet);
     avcodec_close(pCodecCtx);
     avformat_close_input(&pFormatCtx); //传给一个二级指针
     return ;
