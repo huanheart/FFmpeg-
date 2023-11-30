@@ -165,16 +165,21 @@ int main(int argc, char *argv[])
                 string filename="D:/ffmpeg_study_1";
                 saveFrame(data,linesizes,pCodecCtx->width,pCodecCtx->height,count,filename);
                 count++;
-                if(count>1000) {
+                if(count>50) {
                     cout<<"成功保存"<<endl;
-                    return 0; //这里就保存50张图片
+                    //return 0; //这里就保存50张图片
+                    goto end; //防止内存泄漏
                 }//它会将RGB保存为PPM文件。
             }
             av_packet_unref(packet);
         }
     }
+    end:
     av_freep(data);
-    av_free(pFrame);
+    //av_free(pFrame); //这个不好
+//    需要注意的是，av_free 并不会将指针置为 NULL，所以在释放内存后，最好将指针设置为 NULL，以避免悬空指针的问题。
+    av_frame_free(&pFrame);
+    av_packet_free(&packet);
     //av_free(pFrameRGB);
     avcodec_close(pCodecCtx);
     avformat_close_input(&pFormatCtx); //传给一个二级指针
